@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int compare(const void* a, const void* b) {
+    return (*(char*)a - *(char*)b);
+}
+
+int areAnagrams(char* str1, char* str2) {
+    if (strlen(str1) != strlen(str2)) {
+        return 0;
+    }
+    qsort(str1, strlen(str1), sizeof(char), compare);
+    qsort(str2, strlen(str2), sizeof(char), compare);
+    return strcmp(str1, str2) == 0;
+}
+
+int main() {
+    char str1[] = "listen";
+    char str2[] = "silent";
+    char str3[] = "hello";
+    char str4[] = "world";
+    printf("%d\n", areAnagrams(str1, str2)); 
+    printf("%d\n", areAnagrams(str3, str4)); 
+    return 0;
+}
+
